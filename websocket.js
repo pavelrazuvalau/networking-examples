@@ -8,18 +8,22 @@ function init() {
 
 function testWebSocket() {
   websocket = new WebSocket(wsUri);
-  websocket.onopen = (evt) => {
+
+  websocket.addEventListener('open', (evt) => {
     onOpen(evt);
-  };
-  websocket.onclose = (evt) => {
+  });
+
+  websocket.addEventListener('close', (evt) => {
     onClose(evt);
-  };
-  websocket.onmessage = (evt) => {
+  });
+
+  websocket.addEventListener('message', (evt) => {
     onMessage(evt);
-  };
-  websocket.onerror = (evt) => {
+  });
+
+  websocket.addEventListener('error', (evt) => {
     onError(evt);
-  };
+  });
 }
 
 function onOpen(evt) {
@@ -33,7 +37,6 @@ function onClose(evt) {
 
 function onMessage(evt) {
   writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
-  websocket.close();
 }
 
 function onError(evt) {
@@ -42,7 +45,9 @@ function onError(evt) {
 
 function doSend(message) {
   writeToScreen('SENT: ' + message);
-  websocket.send(message);
+  for (let i of [1,2,3]) {
+    websocket.send(`message ${i}`);
+  }
 }
 
 function writeToScreen(message) {

@@ -3,10 +3,10 @@ let xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://cors-anywhere.herokuapp.com/https://postman-echo.com/get?foo1=bar1&foo2=bar2');
 // xhr.open('POST', 'https://cors-anywhere.herokuapp.com/https://postman-echo.com/post?foo1=bar1&foo2=bar2');
 
-// xhr.setRequestHeader('Authorization', 'Bearer token');
-// xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.setRequestHeader('Authorization', 'Bearer token');
+xhr.setRequestHeader('Content-Type', 'application/json');
 
-// xhr.responseType = 'json';
+xhr.responseType = 'json';
 
 xhr.send();
 // xhr.send(JSON.stringify(
